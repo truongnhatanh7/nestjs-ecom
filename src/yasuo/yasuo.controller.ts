@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
-import { CreateYasuoDto } from './create-yasuo.dto';
+import { CreateYasuoDto } from './dto/create-yasuo.dto';
 import { YasuoService } from './yasuo.service';
 import { IYasuo } from './interfaces/yasuo.interface';
 
