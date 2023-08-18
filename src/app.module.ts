@@ -13,7 +13,7 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggerMiddleware).forRoutes({
-      path: 'cats',
+      path: 'yasuo/find',
       method: RequestMethod.GET,
     });
   }
