@@ -1,7 +1,20 @@
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { YasuoModule } from './yasuo/yasuo.module';
+import { LoggerMiddleware } from './middleware/logger.middleware';
 
 @Module({
   imports: [YasuoModule],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes({
+      path: 'cats',
+      method: RequestMethod.GET,
+    });
+  }
+}

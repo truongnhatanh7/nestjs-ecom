@@ -1,4 +1,11 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { CreateYasuoDto } from './dto/create-yasuo.dto';
 import { YasuoService } from './yasuo.service';
 import { IYasuo } from './interfaces/yasuo.interface';
@@ -12,6 +19,7 @@ export class YasuoController {
     return this.yasuosService.findAll();
   }
 
+  @UsePipes(new ValidationPipe({ transform: true }))
   @Post('create')
   async create(@Body() createYasuoDto: CreateYasuoDto) {
     this.yasuosService.create(createYasuoDto);
