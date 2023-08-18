@@ -5,12 +5,17 @@ import {
   Body,
   UsePipes,
   ValidationPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateYasuoDto } from './dto/create-yasuo.dto';
 import { YasuoService } from './yasuo.service';
 import { IYasuo } from './interfaces/yasuo.interface';
+import { RolesGuard } from './roles.guard';
+import { Roles } from './roles.decorator';
+import { Reflector } from '@nestjs/core';
 
 @Controller('yasuo')
+@UseGuards(new RolesGuard(new Reflector()))
 export class YasuoController {
   constructor(private yasuosService: YasuoService) {}
 
@@ -21,6 +26,7 @@ export class YasuoController {
 
   @UsePipes(new ValidationPipe({ transform: true }))
   @Post('create')
+  @Roles('admin')
   async create(@Body() createYasuoDto: CreateYasuoDto) {
     this.yasuosService.create(createYasuoDto);
   }
