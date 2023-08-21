@@ -6,6 +6,7 @@ export class YasuoService {
   private readonly yasuos: IYasuo[] = [];
 
   create(yasuo: IYasuo) {
+    console.log('Service run');
     this.yasuos.push(yasuo);
   }
 
