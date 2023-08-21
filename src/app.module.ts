@@ -5,6 +5,7 @@ import { ProductController } from './product/product.controller';
 import { ProductService } from './product/product.service';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { CartModule } from './cart/cart.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { AuthModule } from './auth/auth.module';
     ProductModule,
     UserModule,
     AuthModule,
+    CartModule,
   ],
   controllers: [ProductController],
   providers: [ProductService],
